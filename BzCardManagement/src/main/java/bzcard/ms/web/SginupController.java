@@ -25,8 +25,9 @@ public class SginupController {
   }
   
   @RequestMapping("add")
-  public void add(Member m) {
-    System.out.println(m);
+  public String add(Member m) {
+    memberService.addMember(m);
+  return "redirect:../auth/login";
   }
   
   

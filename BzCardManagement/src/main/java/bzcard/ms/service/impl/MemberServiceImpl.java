@@ -1,5 +1,7 @@
 package bzcard.ms.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bzcard.ms.dao.MemberDao;
@@ -17,5 +19,18 @@ public class MemberServiceImpl implements MemberService{
     return memberDao.insert(m);
   }
   
+  @Override
+  public int chkemail(String email) {
+    return memberDao.chkemail(email);
+  }
   
+
+@Override
+public int login(String email, String pwd) {
+  Map<String,Object> params = new HashMap<>();
+  params.put("email", email);
+  params.put("password", pwd);
+  return memberDao.login(params);
+}
+
 }

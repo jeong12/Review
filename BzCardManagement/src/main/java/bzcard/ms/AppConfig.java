@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @PropertySource(
-    {"classpath:/bzcard/ms/conf/jdbc.properties"})
+    {"classpath:/bzcard/ms/conf/jdbc.properties",
+      "classpath:/bzcard/ms/conf/sec.properties"})
 @MapperScan("bzcard.ms.dao")
 
 // 트랜잭션 관리자를 활성화하려면 다음 애노테이션을 붙여야 한다.
@@ -42,7 +43,10 @@ public class AppConfig {
     ds.setUsername(env.getProperty("jdbc.username"));
     ds.setPassword(env.getProperty("jdbc.password"));
     ds.setDefaultAutoCommit(false);
-
+    System.out.println(ds.getDriverClassName());
+    System.out.println(ds.getUrl());
+    System.out.println(ds.getUsername());
+    System.out.println(ds.getPassword());
     return ds;
   }
 

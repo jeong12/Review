@@ -7,5 +7,6 @@ import bzcard.ms.domain.Member;
 public interface MemberService {
 
   int addMember(Member m);
-  
+  int login(String email, String pwd);
+  int chkemail(String email);
 }
