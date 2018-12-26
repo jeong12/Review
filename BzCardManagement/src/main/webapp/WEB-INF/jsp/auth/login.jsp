@@ -38,11 +38,14 @@ function login(){
     	data:{"email":email, "pwd":pwd},
     	success:function(data){
     		if(data == "success"){
-    			location.href = '../signup/form'
+    			location.href = '../bzcard/list'
     		}else if(data == "wrong"){
     			alert("비밀번호가 틀렸습니다.");
     		}else if(data == "nodata"){
     			alert("해당 이메일이 없습니다.");
+    			setTimeout(function(){
+    				location.href='../signup/form'
+    			},3000);
     		}else{
     			alert("오류?");
     		}
