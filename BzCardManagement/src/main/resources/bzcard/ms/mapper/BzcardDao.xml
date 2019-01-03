@@ -6,8 +6,35 @@
 <mapper namespace="bzcard.ms.dao.BzcardDao">
 
     <select id="showAll" resultType="Bzcard">
-    select name from p2_bizcard
+    select name,bcno from p2_bizcard order by name
     </select>
+    
+    <select id="showDetail" resultType="Bzcard" parameterType="int">
+    select name, bcno, tel, mtel, email, fax, email, memo, bcno
+    from p2_bizcard
+    where bcno = #{bcno}
+    </select>
+    
+    <update id="editData" parameterType="Bzcard">
+    update p2_bizcard
+    set name = #{name},
+        mtel = #{mtel},
+        tel = #{tel},
+        fax = #{fax},
+        email = #{email},
+        memo = #{memo}
+     where bcno = #{bcno}
+    </update>
+    
+    <insert id="addData" parameterType="Bzcard" useGeneratedKeys="true" keyColumn="bcno" keyProperty="bcno">
+    insert into p2_bizcard(mno, name, mtel, tel, fax, email, memo)
+    values(#{mno},#{name},#{mtel},#{tel},#{fax},#{email},#{memo})
+    </insert>
+    
+    <delete id="deleteData" parameterType="int">
+    delete from p2_bizcard
+    where bcno = #{no};
+    </delete>
     
 </mapper>
 

@@ -8,4 +8,8 @@ import bzcard.ms.domain.Bzcard;
 public interface BzcardService {
 
   List<Bzcard> showList();
+  Bzcard showDetail(int bcno);
+  int editData(Bzcard bz);
+  int addData(Bzcard bz);
+  int removeDate(int bcno);
 }

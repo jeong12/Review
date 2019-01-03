@@ -18,4 +18,24 @@ public class BzcardServiceImpl implements BzcardService{
     return bzcardDao.showAll();
   }
 
+  @Override
+  public Bzcard showDetail(int bcno) {
+    return bzcardDao.showDetail(bcno);
+  }
+  
+  @Override
+  public int editData(Bzcard bz) {
+    return bzcardDao.editData(bz);
+  }
+  
+  @Override
+  public int addData(Bzcard bz) {
+    return bzcardDao.addData(bz);
+  }
+  
+  @Override
+  public int removeDate(int bcno) {
+    return bzcardDao.deleteData(bcno);
+  }
+  
 }

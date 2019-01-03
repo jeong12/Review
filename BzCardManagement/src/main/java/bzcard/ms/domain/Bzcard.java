@@ -10,6 +10,7 @@ public class Bzcard {
   protected String fax;
   protected String email;
   protected String memo;
+
   public int getBcno() {
     return bcno;
   }

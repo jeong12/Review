@@ -19,20 +19,17 @@
 #search{position: absolute; left: 2rem; top: 1rem; width: 60%;}
 .footerpart{border-top: 1px solid silver; clear: both; position: relative; height: 20%;}
 .meno{resize: none;}
-.detail{display: inline-block; float: right; margin-right: 35%;}
+.detail{display: inline-block; float: right; margin-right: 10%; width: 60%;}
 table{border-collapse: separate; border-spacing: 0 20px;}
 .info:nth-child(1){text-align: center;}
 a {text-decoration: none; color: black;}
-#btnimg{width: 1rem; height: 1rem;}
+#name{font-size: 2rem; text-align: center;}
 </style>
 <body>
 <div class='container'>
 <jsp:include page="../header.jsp"></jsp:include>
 <aside class='listsbar'>
-<div>
-<button class='img-button'><img src="/img/search.png" id='btnimg'></button>
 <input type="text" id=search placeholder="검색" name='name'>
-</div>
 <div class='names'>
 <c:forEach items="${list}" var="m">
 <div><a href='detail?bcno=${m.bcno}'>${m.name}</a></div>
@@ -40,19 +37,48 @@ a {text-decoration: none; color: black;}
 </div>
 </aside>
 <div class='detail'>
+<form action="add" class='addform'>
 <table class='info'>
-<tr><td colspan="2"><h2 class='fullname'></h2></td></tr>
-<tr><td>휴대 전화</td><td class='tel'></td></tr>
-<tr><td>일반 전화</td><td class='mtel'></td></tr>
-<tr><td>팩스</td><td class='fax'></td></tr>
-<tr><td>이메일</td><td class='email'></td></tr>
-<tr><td>메모</td><td><textarea class='meno' readonly="readonly"></textarea></td></tr>
+<tr><td colspan="2" class='fullname'><input type="text" id='name' name='name' placeholder="이름"></td></tr>
+<tr><td><label for='tel'>휴대전화</label></td>
+    <td class='tel'><input type='text' id='tel' name='tel'></td></tr>
+<tr><td><label for='mtel'>일반 전화</label></td>
+    <td class='mtel'><input type='text' id='mtel' name='mtel'></td></tr>
+<tr><td><label for='fax'>팩스</label></td>
+    <td class='fax'><input type='text' id='fax' name='fax'></td></tr>
+<tr><td><label for='email'>이메일</label></td>
+    <td class='email'><input type='text' id='email' name='email'></td></tr>
+<tr><td>메모</td>
+    <td><textarea class='meno'></textarea></td></tr>
 </table>
+<button type="button" onclick="chk()">완료</button>
+<a href='detail?bcno=${bz.bcno}'><button type="button">취소</button></a>
+</form>
 </div>
 <jsp:include page="../footer1.jsp"></jsp:include>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+function chk(){
+	
+    var name=$('#name').val();
+    var tel = $('#tel').val();
+    var email = $('#email').val();
+    
+	if(name.length == 0) {
+		alert("이름을 입력해주세요"); 
+		return false
+	}
+	if(tel.length == 0) {alert("휴대폰 번호를 입력해주세요."); return false}
+	
+	if(email.length == 0) {alert("이메일을 입력해주세요."); return false}
+	
+	if(name.length !=0 && tel.length != 0 && email.length !=0){
+		$('.addform').submit();
+	}
+	
+}
 
 </script>
 </body>

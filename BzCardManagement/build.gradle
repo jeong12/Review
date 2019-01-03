@@ -26,7 +26,9 @@ dependencies {
     // => Spring WebMVC를 추가하면 context 라이브러리는 자동으로 추가된다. 
     //compile group: 'org.springframework', name: 'spring-context', version: '5.1.1.RELEASE'
     
-    
+    // ajax 쓸려면 추가해야 함
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+
     // mariadb jdbc driver 
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
     
