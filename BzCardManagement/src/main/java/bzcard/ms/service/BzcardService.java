@@ -12,4 +12,5 @@ public interface BzcardService {
   int editData(Bzcard bz);
   int addData(Bzcard bz);
   int removeDate(int bcno);
+  List<Bzcard> search(String word);
 }

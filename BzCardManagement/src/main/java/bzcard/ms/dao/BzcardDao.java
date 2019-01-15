@@ -10,4 +10,5 @@ public interface BzcardDao {
   int editData(Bzcard bz);
   int addData(Bzcard bz);
   int deleteData(int bcno);
+  List<Bzcard> searchResult(String word);
 }

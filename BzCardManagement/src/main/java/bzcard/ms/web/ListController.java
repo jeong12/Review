@@ -5,6 +5,7 @@ import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bzcard.ms.domain.Bzcard;
 import bzcard.ms.service.BzcardService;
 import bzcard.ms.service.MemberService;
@@ -80,6 +81,19 @@ public String deleteData(int bcno) {
   else return "redirect: ../error.jsp";
 }
 
+@ResponseBody
+@RequestMapping("search")
+public List<Bzcard> searchData(String word){
+
+  List<Bzcard> result = bzcardService.search(word);
+  if(result.size() == 0) {
+    Bzcard no = new Bzcard();
+    no.setName("NoData");
+    result.add(no);
+  }
+  return result;
+
+}
 
 
 }

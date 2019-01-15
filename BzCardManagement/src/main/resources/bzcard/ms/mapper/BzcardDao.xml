@@ -36,6 +36,13 @@
     where bcno = #{no};
     </delete>
     
+    <select id="searchResult" parameterType="String" resultType="Bzcard">
+    select name,bcno 
+    from p2_bizcard
+    where name like CONCAT('%',#{word},'%')  
+    order by name
+    </select>
+    
 </mapper>
 
 

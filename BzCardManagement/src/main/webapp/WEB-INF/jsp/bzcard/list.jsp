@@ -23,14 +23,15 @@
 table{border-collapse: separate; border-spacing: 0 20px;}
 .info:nth-child(1){text-align: center;}
 a {text-decoration: none; color: black;}
-#btnimg{width: 1rem; height: 1rem;}
+#btnimg{width: 1rem; height: 1rem; position: relative;}
+.img-button{position: relative; top: 1rem;}
 </style>
 <body>
 <div class='container'>
 <jsp:include page="../header.jsp"></jsp:include>
 <aside class='listsbar'>
 <div>
-<button class='img-button'><img src="/img/search.png" id='btnimg'></button>
+<button class='img-button' onclick="search()"><img src="/img/search.png" id='btnimg' onclick="search()"></button>
 <input type="text" id=search placeholder="검색" name='name'>
 </div>
 <div class='names'>
@@ -53,6 +54,37 @@ a {text-decoration: none; color: black;}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+function search(){
+	var name = $('#search').val();
+
+	$.ajax({
+		type:"GET",
+		url:"search",
+		data:{"word":name},
+		success:function(data){
+			console.log(data);
+			$('.names').empty();
+		    $.each(function(item){
+		    	if(item.name == "NoData"){
+		    		console.log(data);
+		    		alert("해당 데이터가 없습니다.");
+		    		window.location.href = "list";
+		    	}else{
+		    		$('.names').append("<div><a href='detail?bcno="+
+		    				item.bcno+"'>"+
+		    				item.name+"</a></div>")
+		    	}
+		    	});
+		},
+		error:function(xhr,status,error){
+			alert("관리자에게 문의해주시기 바랍니다");
+		}
+		
+		
+	});
+	
+}
 
 </script>
 </body>

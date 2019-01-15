@@ -38,4 +38,9 @@ public class BzcardServiceImpl implements BzcardService{
     return bzcardDao.deleteData(bcno);
   }
   
+  @Override
+  public List<Bzcard> search(String word) {
+    return bzcardDao.searchResult(word);
+  }
+  
 }
